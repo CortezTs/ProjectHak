@@ -1,24 +1,81 @@
-import { Component } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy, ViewChild  } from '@angular/core';
 
-import { User } from '../_models';
-import { UserService, AuthenticationService } from '../_services';
+import { takeWhile } from 'rxjs/operators';
 
-@Component({templateUrl: 'home.component.html'})
-export class HomeComponent {
-    currentUser: User;
-    userFromApi: User;
+import { OrdersChartComponent } from './charts/orders-chart.component';
+import { ProfitChartComponent } from './charts/profit-chart.component';
 
-    constructor(
-        private userService: UserService,
-        private authenticationService: AuthenticationService
-    ) {
-        this.currentUser = this.authenticationService.currentUserValue;
+import { OrdersChart } from '../../@core/data/orders-chart';
+import { ProfitChart } from '../../@core/data/profit-chart';
+import {OrderProfitChartSummary, OrdersProfitChartData} from '../../@core/data/orders-profit-chart';
+
+@Component({
+  selector: 'ngx-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+})
+export class HomeComponent implements OnInit {
+
+  private alive = true;
+
+  chartPanelSummary: OrderProfitChartSummary[];
+  period: string = 'year';
+  ordersChartData: OrdersChart;
+  profitChartData: ProfitChart;
+
+  @ViewChild('ordersChart', { static: true }) ordersChart: OrdersChartComponent;
+  @ViewChild('profitChart', { static: true }) profitChart: ProfitChartComponent;
+
+  constructor(private ordersProfitChartService: OrdersProfitChartData) {
+    this.ordersProfitChartService.getOrderProfitChartSummary()
+      .pipe(takeWhile(() => this.alive))
+      .subscribe((summary) => {
+        this.chartPanelSummary = summary;
+      });
+
+    this.getOrdersChartData(this.period);
+    this.getProfitChartData(this.period);
+  }
+
+  setPeriodAndGetChartData(value: string): void {
+    if (this.period !== value) {
+      this.period = value;
     }
 
-    ngOnInit() {
-        this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => { 
-            this.userFromApi = user;
-        });
+    this.getOrdersChartData(value);
+    this.getProfitChartData(value);
+  }
+
+  changeTab(selectedTab) {
+    if (selectedTab.tabTitle === 'Profit') {
+      this.profitChart.resizeChart();
+    } else {
+      this.ordersChart.resizeChart();
     }
+  }
+
+  getOrdersChartData(period: string) {
+    this.ordersProfitChartService.getOrdersChartData(period)
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(ordersChartData => {
+        this.ordersChartData = ordersChartData;
+      });
+  }
+
+  getProfitChartData(period: string) {
+    this.ordersProfitChartService.getProfitChartData(period)
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(profitChartData => {
+        this.profitChartData = profitChartData;
+      });
+  }
+
+  ngOnDestroy = () => {
+    this.alive = false;
+  }
+
+
+  ngOnInit() {
+  }
+
 }

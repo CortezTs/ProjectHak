@@ -1,10 +1,107 @@
-<h1>Home</h1>
-<p>You're logged in with Angular 7 & JWT!!</p>
-<p>Your role is: <strong>{{currentUser.role}}</strong>.</p>
-<p>This page can be accessed by all authenticated users.</p>
-<div>
-    Current user from secure api end point:
-    <ul>
-        <li *ngIf="userFromApi">{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
-    </ul>
+<div class="container-fluid">
+  <div class="home-screen" style="">
+    <div class="home-first-block" style="min-height:350px">
+      <div class="row">
+        <!--Текст описания и приветствия-->
+        <div class="home-block-info col-12 col-md-10 offset-md-1">
+          <div class="font-row">
+            <div class="header">
+              <h3 style="text-align:center">Hello, Gena!</h3>
+            </div>
+            <p align="justify">
+              Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+              there live the blind texts.
+              Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias asperiores consequuntur dolor dolore
+              incidunt molestiae necessitatibus nesciunt, odio officia praesentium quas quidem quis,
+              quo repellendus sequi suscipit. Ab, nobis?
+            </p>Progress Bar Size
+            <div class="header">
+              <h3 style="text-align:center">Super, grow!</h3>
+            </div>
+          </div>
+        </div>
+        <!--Граффик роста-->
+        <div class="home-block-info col-12 col-md-10 offset-md-1">
+          <ngx-orders-chart #ordersChart [ordersChartData]="ordersChartData"></ngx-orders-chart>
+        </div>
+        <!--Топ сборов-->
+        <div class="home-block-info col-12 col-md-10 offset-md-1">
+          <div class="header">
+            <h3 style="text-align:center">Top!</h3>
+          </div>
+          <div class="row">
+<!--            <nb-card class="col-12 col-md-6 col-xl-3" size="medium">-->
+<!--              <nb-card-header>-->
+<!--                Used Fonts-->
+<!--              </nb-card-header>-->
+<!--              <nb-card-body>-->
+<!--                <div class="font-row">-->
+<!--                  <div class="header">-->
+<!--                    <div class="name bold justify-content-center">Open Sans</div>-->
+<!--                  </div>-->
+<!--                  <p>-->
+<!--                    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,-->
+<!--                    there live the blind texts.-->
+<!--                    Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </nb-card-body>-->
+<!--            </nb-card>-->
+<!--            <nb-card class="col-12 col-md-6 col-xl-3" size="medium">-->
+<!--              <nb-card-header>-->
+<!--                Used Fonts-->
+<!--              </nb-card-header>-->
+<!--              <nb-card-body>-->
+<!--                <div class="font-row">-->
+<!--                  <div class="header">-->
+<!--                    <div class="name bold justify-content-center">Open Sans</div>-->
+<!--                  </div>-->
+<!--                  <p>-->
+<!--                    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,-->
+<!--                    there live the blind texts.-->
+<!--                    Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </nb-card-body>-->
+<!--            </nb-card>-->
+<!--            <nb-card class="col-12 col-md-6 col-xl-3" size="medium">-->
+<!--              <nb-card-header>-->
+<!--                Used Fonts-->
+<!--              </nb-card-header>-->
+<!--              <nb-card-body>-->
+<!--                <div class="font-row">-->
+<!--                  <div class="header">-->
+<!--                    <div class="name bold justify-content-center">Open Sans</div>-->
+<!--                  </div>-->
+<!--                  <p>-->
+<!--                    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,-->
+<!--                    there live the blind texts.-->
+<!--                    Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </nb-card-body>-->
+<!--            </nb-card>-->
+<!--            <nb-card class="col-12 col-md-6 col-xl-3" size="medium">-->
+<!--              <nb-card-header>-->
+<!--                Used Fonts-->
+<!--              </nb-card-header>-->
+<!--              <nb-card-body>-->
+<!--                <div class="font-row">-->
+<!--                  <div class="header">-->
+<!--                    <div class="name bold justify-content-center">Open Sans</div>-->
+<!--                  </div>-->
+<!--                  <p>-->
+<!--                    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,-->
+<!--                    there live the blind texts.-->
+<!--                    Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </nb-card-body>-->
+<!--            </nb-card>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

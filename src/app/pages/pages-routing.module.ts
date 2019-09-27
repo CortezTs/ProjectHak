@@ -1,13 +1,14 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { AuthGuard } from './_guards';
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {AuthGuard} from './_guards';
 
-import { PagesComponent } from './pages.component';
-import { LoginComponent } from './login/login.component';
-import { RegComponent } from './reg/reg.component';
-import {ProjectsComponent} from './projects/projects.component';
+import {PagesComponent} from './pages.component';
+import {LoginComponent} from './login/login.component';
+import {RegComponent} from './reg/reg.component';
 import {ProjectComponent} from './project/project.component';
-import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import {HomeComponent} from "./home";
+import {NotFoundComponent} from './miscellaneous/not-found/not-found.component';
+
 
 const routes: Routes = [{
   path: '',
@@ -18,15 +19,15 @@ const routes: Routes = [{
       component: LoginComponent,
     },
     {
-      path:'registration',
+      path: 'registration',
       component: RegComponent
     },
     {
-      path:'projects',
-      component: ProjectsComponent
+      path: 'home',
+      component: HomeComponent
     },
     {
-      path:'project',
+      path: 'project',
       component: ProjectComponent
     },
     {
